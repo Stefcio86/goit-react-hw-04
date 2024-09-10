@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import styles from './ImageModal.module.css';
 
-// Ustawienie elementu root
 Modal.setAppElement('#root');
 
 const ImageModal = React.memo(({ isOpen, onRequestClose, image }) => {
@@ -28,7 +27,7 @@ const ImageModal = React.memo(({ isOpen, onRequestClose, image }) => {
   );
 });
 
-ImageModal.displayName = 'ImageModal'; // Dodanie displayName
+ImageModal.displayName = 'ImageModal'; 
 
 ImageModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
