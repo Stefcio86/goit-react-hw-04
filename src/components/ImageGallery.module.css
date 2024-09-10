@@ -4,9 +4,9 @@
     gap: 16px;
     list-style: none;
     padding: 0;
+    justify-content: center; 
   }
   
   .item {
     width: 300px;
   }
-  

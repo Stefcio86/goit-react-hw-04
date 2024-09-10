@@ -10,7 +10,7 @@ const ImageGallery = ({ images, onImageClick }) => {
           <ImageCard
             src={image.urls.small}
             alt={image.alt_description}
-            onClick={() => onImageClick(image.urls.regular)}
+            onClick={() => onImageClick(image)}
           />
         </li>
       ))}
@@ -27,6 +27,11 @@ ImageGallery.propTypes = {
         regular: PropTypes.string.isRequired,
       }).isRequired,
       alt_description: PropTypes.string,
+      user: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+      description: PropTypes.string,
+      likes: PropTypes.number.isRequired,
     })
   ).isRequired,
   onImageClick: PropTypes.func.isRequired,

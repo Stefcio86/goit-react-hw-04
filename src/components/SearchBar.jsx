@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { FaSearch } from 'react-icons/fa';
+import styles from './SearchBar.module.css'; 
 
 const SearchBar = ({ onSubmit }) => {
-    const [query, setQuery ] = useState ('');
+    const [query, setQuery] = useState('');
     
     const handleInputChange = e => {
         setQuery(e.target.value);
@@ -20,15 +22,20 @@ const SearchBar = ({ onSubmit }) => {
     };
     
     return (
-        <header>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type='text'
-                    value={query}
-                    onChange={handleInputChange}
-                    placeholder="Search images and photos"
-                />
-                <button type="submit">Search</button>
+        <header className={styles.header}>
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <div className={styles.inputWrapper}>
+                    <input
+                        type='text'
+                        value={query}
+                        onChange={handleInputChange}
+                        placeholder="Search images and photos"
+                        className={styles.input}
+                    />
+                    <button type="submit" className={styles.button}>
+                        <FaSearch /> 
+                    </button>
+                </div>
             </form>
         </header>
     );

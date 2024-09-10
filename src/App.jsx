@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import Modal from 'react-modal';
 import SearchBar from './components/SearchBar';
 import ImageGallery from './components/ImageGallery';
 import Loader from './components/Loader';
 import LoadMoreBtn from './components/LoadMoreBtn';
 import ErrorMessage from './components/ErrorMessage';
+import ImageModal from './components/ImageModal';
 import { fetchImages } from './api';
-
-Modal.setAppElement('#root');
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -50,14 +48,24 @@ const App = () => {
   };
 
   const openModal = (image) => {
-    setSelectedImage(image);
-    setModalIsOpen(true);
+    if (image) {
+      setSelectedImage(image);
+      setModalIsOpen(true);
+    }
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedImage(null);
   };
+
+  useEffect(() => {
+    if (modalIsOpen) {
+      console.log("Modal is open");
+    } else {
+      console.log("Modal is closed");
+    }
+  }, [modalIsOpen]);
 
   return (
     <div>
@@ -66,16 +74,13 @@ const App = () => {
       <ImageGallery images={images} onImageClick={openModal} />
       {loading && <Loader />}
       {page < totalPages && !loading && <LoadMoreBtn onClick={handleLoadMore} />}
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Image Modal"
-        className="Modal"
-        overlayClassName="Overlay"
-      >
-        <button onClick={closeModal} className="CloseButton">Close</button>
-        <img src={selectedImage} alt="Selected" />
-      </Modal>
+      {selectedImage && (
+        <ImageModal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          image={selectedImage}
+        />
+      )}
     </div>
   );
 };
