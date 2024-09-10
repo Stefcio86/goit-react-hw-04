@@ -4,7 +4,7 @@ import ImageGallery from './components/ImageGallery';
 import Loader from './components/Loader';
 import LoadMoreBtn from './components/LoadMoreBtn';
 import ErrorMessage from './components/ErrorMessage';
-import ImageModal from './components/imageModal';
+import ImageModal from './components/ImageModal';
 import { fetchImages } from './api';
 
 const App = () => {
